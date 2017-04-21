@@ -21,7 +21,7 @@ The file aliases.json is used to add all aliases for components. It has two defa
 ```
 
 ### Enviroments and Servers
-The structure to create enviroments is the following.  
+The structure to create enviroments is the following. Change it in servers.json file. 
 The property default is used to call *dinamo* command without type the flag enviroment (-e)
 
 ```json
