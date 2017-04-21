@@ -1,0 +1,28 @@
+{
+  "default": "local",
+  "enviroments" : 
+  [
+    {
+      "name": "local",
+      "user": "admin",
+      "password": "admin",
+      "servers": [
+        {
+          "name": "ps01",
+          "host": "127.0.0.1",
+          "port": "10181"
+        },
+        {
+          "name": "bcc",
+          "host": "127.0.0.1",
+          "port": "20181"
+        },
+        {
+          "name": "services",
+          "host": "127.0.0.1",
+          "port": "19081"
+        }
+      ]
+    }
+  ]
+}
