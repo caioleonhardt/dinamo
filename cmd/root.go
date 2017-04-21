@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"sync"
+
 	"github.com/dinamo/conf"
 	"github.com/dinamo/dyn"
 	"github.com/spf13/cobra"
@@ -56,17 +58,25 @@ func changeProperty(servers []conf.Server, args []string) {
 	var property = args[1]
 	var newValue = args[2]
 
+	var wg sync.WaitGroup
+
 	for _, server := range servers {
-		fullURL := server.URL() + dynCtx + component
+		wg.Add(1)
 
-		res, err := http.ChangeValue(fullURL, property, newValue)
+		go func(s conf.Server) {
+			defer wg.Done()
+			fullURL := s.URL() + dynCtx + component
 
-		if err != nil {
-			fmt.Printf("Execution %s %s\n", server.Name, "NOT OK")
-		} else {
-			fmt.Printf("Execution %s %s\n", server.Name, res.Status)
-		}
+			res, err := http.ChangeValue(fullURL, property, newValue)
+
+			if err != nil {
+				fmt.Printf("Execution %s %s\n", s.Name, "NOT OK")
+			} else {
+				fmt.Printf("Execution %s %s\n", s.Name, res.Status)
+			}
+		}(server)
 	}
+	wg.Wait()
 }
 
 func invokeMethod(servers []conf.Server, args []string) {
@@ -78,17 +88,25 @@ func invokeMethod(servers []conf.Server, args []string) {
 	var component = conf.Component(args[0])
 	var methodName = args[1]
 
+	var wg sync.WaitGroup
+
 	for _, server := range servers {
-		fullURL := server.URL() + dynCtx + component
+		wg.Add(1)
 
-		res, err := http.InvokeMethod(fullURL, methodName)
+		go func(s conf.Server) {
+			defer wg.Done()
+			fullURL := s.URL() + dynCtx + component
 
-		if err != nil {
-			fmt.Printf("Execution %s %s\n", server.Name, "NOT OK")
-		} else {
-			fmt.Printf("Execution %s %s\n", server.Name, res.Status)
-		}
+			res, err := http.InvokeMethod(fullURL, methodName)
+
+			if err != nil {
+				fmt.Printf("Execution %s %s\n", s.Name, "NOT OK")
+			} else {
+				fmt.Printf("Execution %s %s\n", s.Name, res.Status)
+			}
+		}(server)
 	}
+	wg.Wait()
 }
 
 func init() {
