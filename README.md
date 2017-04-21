@@ -8,7 +8,7 @@ Dynamo CLI to change component values easily in various servers
 
 ### Invoke Method
 
-    dinamo <component> <methodName> [-i][-e enviroment]
+    dinamo <component> <methodName> -i [-e enviroment]
     dinamo orderRepository invalidateCaches -i
 
 ### Aliases
