@@ -14,14 +14,14 @@ Dynamo CLI to change component values easily in various servers
 ### Aliases
 The file aliases.json is used to add all aliases for components. It has two defaults.
 ```json
-    {
-        "orderManager": "/atg/commerce/order/OrderManager/",
-        "orderRepository": "/atg/commerce/order/OrderRepository/"
-    }
+{
+    "orderManager": "/atg/commerce/order/OrderManager/",
+    "orderRepository": "/atg/commerce/order/OrderRepository/"
+}
 ```
 
 ### Enviroments and Servers
-The structure to create enviroments is the following.
+The structure to create enviroments is the following.  
 The property default is used to call *dinamo* command without type the flag enviroment (-e)
 
 ```json
@@ -44,3 +44,8 @@ The property default is used to call *dinamo* command without type the flag envi
   ]
 }
 ```
+### Install and Use
+
+- Windows:  
+  Clone the repository and run the dynamo.exe  
+  Obs: you should have the files servers.json and aliases.json to Dinamo work
