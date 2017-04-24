@@ -12,6 +12,9 @@ const serverFile = "servers.json"
 
 var conf Conf
 
+// Enviroment selected enviroment
+var Enviroment *Env
+
 //Conf configuration of service
 type Conf struct {
 	Enviroments []Env
@@ -53,6 +56,7 @@ func loadConf() {
 func Context(env string) *Env {
 	for _, val := range conf.Enviroments {
 		if strings.Compare(val.Name, env) == 0 {
+			Enviroment = &val
 			return &val
 		}
 	}

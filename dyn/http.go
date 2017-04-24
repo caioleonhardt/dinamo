@@ -6,6 +6,8 @@ import (
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/dinamo/conf"
 )
 
 // ChangeValue change value on dynamo
@@ -38,8 +40,7 @@ func basic(urlServer string, form url.Values) (*http.Response, error) {
 
 	req.PostForm = form
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Add("Content-Lenght", "60")
-	req.SetBasicAuth("admin", "admin")
+	req.SetBasicAuth(conf.Enviroment.User, conf.Enviroment.Password)
 
 	client := http.Client{}
 	resp, err := client.Do(req)
