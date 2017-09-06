@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dinamo/cmd"
+	"github.com/caioleonhardt/dinamo/cmd"
 )
 
 func main() {
