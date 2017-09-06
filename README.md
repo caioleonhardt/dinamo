@@ -12,12 +12,10 @@ Dynamo CLI to change component values easily in various servers
     dinamo orderRepository invalidateCaches -i
 
 ### Aliases
-The file aliases.json is used to add all aliases for components. It has two defaults.
-```json
-{
-    "orderManager": "/atg/commerce/order/OrderManager/",
-    "orderRepository": "/atg/commerce/order/OrderRepository/"
-}
+The file aliases.yml is used to add all aliases for components. It has two defaults.
+```yml
+orderManager: /atg/commerce/order/OrderManager/
+orderRepository: /atg/commerce/order/OrderRepository/
 ```
 
 ### Enviroments and Servers
