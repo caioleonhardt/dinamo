@@ -6,8 +6,8 @@ import (
 
 	"sync"
 
-	"github.com/dinamo/conf"
-	"github.com/dinamo/dyn"
+	"github.com/caioleonhardt/dinamo/conf"
+	"github.com/caioleonhardt/dinamo/dyn"
 	"github.com/spf13/cobra"
 )
 

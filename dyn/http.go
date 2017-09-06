@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/dinamo/conf"
+	"github.com/caioleonhardt/dinamo/conf"
 )
 
 // ChangeValue change value on dynamo
