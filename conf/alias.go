@@ -10,5 +10,11 @@ type Alias interface {
 //Component receive an alias or complete components
 //and return the component path
 func Component(name string) string {
-	return ymlAliaser.Get(name)
+	res := ymlAliaser.Get(name)
+
+	if res == "" {
+		return name
+	}
+
+	return res
 }
