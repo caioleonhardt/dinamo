@@ -33,9 +33,14 @@ The property default is used to call *dinamo* command without type the flag envi
       "password": "admin",
       "servers": [
         {
-          "name": "ps01",
+          "name": "production",
           "host": "127.0.0.1",
-          "port": "10181"
+          "port": "10181,10281,10381"
+        },
+        {
+          "name": "bcc",
+          "host": "127.0.0.1",
+          "port": "20181"
         }
       ]
     }
