@@ -1,7 +1,7 @@
 package http
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -34,7 +34,7 @@ func basic(urlServer string, form url.Values) (*http.Response, error) {
 	req, err := http.NewRequest("POST", urlServer, strings.NewReader(form.Encode()))
 
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
 		os.Exit(1)
 	}
 

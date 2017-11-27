@@ -1,5 +1,9 @@
 package conf
 
+import (
+	"strings"
+)
+
 // Alias is the...
 type Alias interface {
 	Path() string
@@ -12,9 +16,17 @@ type Alias interface {
 func Component(name string) string {
 	res := ymlAliaser.Get(name)
 
+	var component string
+
 	if res == "" {
-		return name
+		component = name
+	} else {
+		component = res
 	}
 
-	return res
+	if !strings.HasSuffix(component, "/") {
+		component = component + "/"
+	}
+
+	return component
 }

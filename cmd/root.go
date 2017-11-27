@@ -61,20 +61,23 @@ func changeProperty(servers []conf.Server, args []string) {
 	var wg sync.WaitGroup
 
 	for _, server := range servers {
-		wg.Add(1)
+		for _, url := range server.URL() {
+			wg.Add(1)
 
-		go func(s conf.Server) {
-			defer wg.Done()
-			fullURL := s.URL() + dynCtx + component
+			var fullURL = url + dynCtx + component
 
-			res, err := http.ChangeValue(fullURL, property, newValue)
+			go func(fullURL string) {
+				defer wg.Done()
 
-			if err != nil {
-				fmt.Printf("Execution %s %s\n", s.Name, "NOT OK")
-			} else {
-				fmt.Printf("Execution %s %s\n", s.Name, res.Status)
-			}
-		}(server)
+				res, err := http.ChangeValue(fullURL, property, newValue)
+
+				if err != nil {
+					fmt.Printf("Execution %s %s\n", fullURL, "NOT OK")
+				} else {
+					fmt.Printf("Execution %s %s\n", fullURL, res.Status)
+				}
+			}(fullURL)
+		}
 	}
 	wg.Wait()
 }
@@ -91,20 +94,23 @@ func invokeMethod(servers []conf.Server, args []string) {
 	var wg sync.WaitGroup
 
 	for _, server := range servers {
-		wg.Add(1)
+		for _, url := range server.URL() {
+			wg.Add(1)
 
-		go func(s conf.Server) {
-			defer wg.Done()
-			fullURL := s.URL() + dynCtx + component
+			var fullURL = url + dynCtx + component
 
-			res, err := http.InvokeMethod(fullURL, methodName)
+			go func(fullURL string) {
+				defer wg.Done()
 
-			if err != nil {
-				fmt.Printf("Execution %s %s\n", s.Name, "NOT OK")
-			} else {
-				fmt.Printf("Execution %s %s\n", s.Name, res.Status)
-			}
-		}(server)
+				res, err := http.InvokeMethod(fullURL, methodName)
+
+				if err != nil {
+					fmt.Printf("Execution %s %s\n", fullURL, "NOT OK")
+				} else {
+					fmt.Printf("Execution %s %s\n", fullURL, res.Status)
+				}
+			}(fullURL)
+		}
 	}
 	wg.Wait()
 }

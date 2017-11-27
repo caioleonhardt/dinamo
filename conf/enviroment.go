@@ -38,8 +38,17 @@ type Server struct {
 }
 
 //URL build the url
-func (s *Server) URL() string {
-	return "http://" + s.Host + ":" + s.Port
+func (s *Server) URL() []string {
+	ports := strings.Split(s.Port, ",")
+
+	var urls []string
+
+	for _, port := range ports {
+		url := "http://" + s.Host + ":" + string(port)
+		urls = append(urls, url)
+	}
+
+	return urls
 }
 
 func loadConf() {
